@@ -1,24 +1,7 @@
-//in case of a \r\nRING\r\n, detect the phonenumber and send this to the Serial terminal of the computer
-//uses RX/TX of arduino for PC communication
-//uses software serial port for rx/td to TC35 board.
-//all received data from the phone is displayed in the terminal
- 
-#include <SoftwareSerial.h>
-//#include <TFT.h>
-//#include <SPI.h>
+ #include <SoftwareSerial.h>
 
-// pin definition for the Uno
-//#define cs  7
-//#define dc  9
-//#define rst  8
-//#include <LiquidCrystal.h>
-
-//TFT screen = TFT(cs, dc, rst);
-//LiquidCrystal lcd(12,11,6,7,5,4);
 SoftwareSerial gsmSerial(2,3);
 
-//String lcdtext="";
-//char LCDprint[20];
 int led=13;
 char receivedByte;
 int index;
@@ -29,32 +12,22 @@ int j;
 int telStart,telEnd;
 String phoneNumber;
 char gsm_char,gsm_char_send;
-String cellContent=""; //string we're sending
-String ctlZ="\x1A"; //the code for Ctrl-Z
-String SMScontent=""; //the actual SMS message || 
-//char fonnumber;
+String cellContent=""; 		//string we're sending
+String ctlZ="\x1A"; 		//the code for Ctrl-Z
+String SMScontent=""; 		//the actual SMS message || 
  
 void setup(){
-  //screen.begin();
-  //screen.background(0,0,0);
-  //screen.stroke(255,255,255);
-  //screen.setTextSize(2);
-  //screen.text("The caller number is:",0,0);
-  //lcd.begin(16,2);
   pinMode(13, OUTPUT);
   Serial.begin(9600);
   gsmSerial.begin(9600);
  
-  Serial.println("\r\nCommunication started\r\n");
- 
-  //start communication with GSM
+  Serial.println("\r\nCommunication started\r\n");	//start communication with GSM
   gsmSerial.print("AT\r");
   delay(400);
-  //PIN not necessary
   gsmSerial.print("AT+CPIN=0000\r");
   delay(400);
-//Enable number of calling phone, without this command
-//only \r\nRING\r\n is receivied in case of an incoming call
+							//Enable number of calling phone, without this command
+							//only \r\nRING\r\n is received in case of an incoming call
   gsmSerial.print("AT+CLIP=1\r");
   delay(400);
 }
@@ -87,16 +60,17 @@ void loop(){
               }
             }
          }
-        //if RING
+        
+	//if RING
         if(flagRING==1){
  
-            if(receivedByte==':'){    //first number of telephone
-                telStart=index+2;           //first number (that is the the second character after ':' (first character is a space)
+            if(receivedByte==':'){    		//first number of telephone
+                telStart=index+2;           	//first number (that is the the second character after ':' (first character is a space)
             }
             if(receivedByte==','){
                 //last number of telephone number
                 numberFlag=1;
-                telEnd=index;  //remove comma
+                telEnd=index;  			//remove comma
             }
             index++;
  
@@ -109,11 +83,6 @@ void loop(){
  
  
      }
-      //screen.text("The number is:",0,0);
-      //lcdtext+=phoneNumber;
-      //fonnumber+=phoneNumber;
-      //screen.text(fonnumber,0,20);
-      //lcd.print(phoneNumber);
       SMScontent+=phoneNumber; 
       cellContent+=SMScontent;
       cellContent+=ctlZ;
@@ -131,8 +100,8 @@ void loop(){
       gsmSerial.write("\r");
    }
  
- //when the character c is received from the terminal of the computer
- //call a number (feature just for testing TC35 board)
+ 							//when the character c is received from the terminal of the computer
+ 							//call a number (feature just for testing TC35 board)
   if(Serial.available() >0){
     gsm_char=Serial.read();
      if(gsm_char=='c')
@@ -144,7 +113,7 @@ void loop(){
 }
 
 void sendSMS() {
-  gsmSerial.println("AT+CMGS=\"0193954263\"");
+  gsmSerial.println("AT+CMGS=\"01234567890\"");
   delay(500);
   gsmSerial.print(cellContent);
   delay(500);
