@@ -8,3 +8,4 @@ Usage:
 Upload the code using the Arduino IDE and the Arduino will detect the phonenumber and send it to the Serial Terminal which can be located inside the Arduino IDE itself.
 This will use RX/TX Arduino pin for PC communication. All received data from the phone is displayed in the terminal. Therefore, to successfully detect the phonenumber the Serial Terminal must be open before turning on the Arduino and GSM Module.
 
+Credits goes to the awesome person (i don't remember the name)
