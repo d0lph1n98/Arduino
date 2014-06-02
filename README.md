@@ -1,4 +1,4 @@
-arduino
+Arduino
 =======
 
-mostly code for arduino project
+Collection of Arduino code
