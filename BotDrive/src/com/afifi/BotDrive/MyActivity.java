@@ -28,26 +28,6 @@ public class MyActivity extends Activity {
         Button right = (Button) findViewById(R.id.right);
         Button stop = (Button) findViewById(R.id.stop);
 
-        // Sent a lot of HTTP request to Dragino Webserver and caused the shield to overheated
-        /*HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httppost = new HttpPost("http://192.168.240.1/arduino/port4/0");
-
-        try {
-            HttpResponse response = httpclient.execute(httppost);
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-
-        // Putting the HTTP request into a loop causing the webserver to overload and
-        // shield to overheated
-
-        // OnTouchListener send multiple request if the user still touching the button
-        // It will increase the load for the Arduino Yun Web server
-	
-	// do not return false from ontouch return true so that it will listen next motion event
-
         forward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,23 +43,6 @@ public class MyActivity extends Activity {
                 }
             }
         });
-
-        /*forward.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("http://192.168.240.1/arduino/port0/255");
-
-                try {
-                    HttpResponse response = httpclient.execute(httppost);
-                } catch (ClientProtocolException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return true;
-            }
-        });*/
 
         backward.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,23 +60,6 @@ public class MyActivity extends Activity {
             }
         });
 
-        /*backward.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("http://192.168.240.1/arduino/port0/255");
-
-                try {
-                    HttpResponse response = httpclient.execute(httppost);
-                } catch (ClientProtocolException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return true;
-            }
-        });*/
-
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,23 +75,6 @@ public class MyActivity extends Activity {
                 }
             }
         });
-
-        /*left.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("http://192.168.240.1/arduino/port0/255");
-
-                try {
-                    HttpResponse response = httpclient.execute(httppost);
-                } catch (ClientProtocolException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return true;
-            }
-        });*/
 
         right.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,23 +92,6 @@ public class MyActivity extends Activity {
             }
         });
 
-        /*right.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("http://192.168.240.1/arduino/port0/255");
-
-                try {
-                    HttpResponse response = httpclient.execute(httppost);
-                } catch (ClientProtocolException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return true;
-            }
-        });*/
-
         stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -195,22 +107,5 @@ public class MyActivity extends Activity {
                 }
             }
         });
-
-        /*stop.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("http://192.168.240.1/arduino/port0/255");
-
-                try {
-                    HttpResponse response = httpclient.execute(httppost);
-                } catch (ClientProtocolException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return true;
-            }
-        });*/
     }
 }
